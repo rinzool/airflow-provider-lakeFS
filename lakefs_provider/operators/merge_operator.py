@@ -1,7 +1,6 @@
 from typing import Any, Dict
 
 from airflow.models import BaseOperator
-from airflow.utils.decorators import apply_defaults
 
 from lakefs_provider.hooks.lakefs_hook import LakeFSHook
 
@@ -35,7 +34,6 @@ class LakeFSMergeOperator(BaseOperator):
     template_ext = ()
     ui_color = '#f4a460'
 
-    @apply_defaults
     def __init__(self, lakefs_conn_id: str, repo: str, source_ref: str, destination_branch: str, msg: str, metadata: Dict[str, str] = None, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.lakefs_conn_id = lakefs_conn_id
